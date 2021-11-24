@@ -21,15 +21,21 @@ export class SignalRService {
       .catch((err) => console.log('Error while starting connection: ' + err));
   };
 
-  public broadcastData = (message: string) => {
+  public broadcastNotification = (message: string) => {
     this.hubConnection
-      .invoke('broadcastData', message)
+      .invoke('BroadcastNotification', message)
       .catch((err) => console.error(err));
   };
 
   public addSMSNotificationListener = () => {
     this.hubConnection.on('sms-notification', (data) => {
-      console.log('Received Data:', data);
+      console.log('SMS Notification:', data);
+    });
+  };
+
+  public addNotificationListener = () => {
+    this.hubConnection.on('notification', (data) => {
+      console.log('Broadcast Notification:', data);
     });
   };
 }

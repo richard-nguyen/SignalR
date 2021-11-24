@@ -15,9 +15,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.signalRService.startConnection();
     this.signalRService.addSMSNotificationListener();
+    this.signalRService.addNotificationListener();
   }
 
   public click(message: string) {
-    this.signalRService.broadcastData(message);
+    this.signalRService.broadcastNotification(message);
   }
 }
